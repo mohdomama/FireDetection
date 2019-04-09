@@ -12,7 +12,8 @@ import cv2
 import time
 
 
-model=load_model(r'TrainedModels/Fire-64x64-color.model')
+# model=load_model(r'TrainedModels/mobilenet.h5')
+model=load_model(r'TrainedModels/Fire-64x64-color-v2.model')
 
 cap = cv2.VideoCapture(0)
 
@@ -23,6 +24,7 @@ else:
 
 
 IMG_SIZE = 64
+# IMG_SIZE = 224
 while(1):
 
     rval, image = cap.read()
