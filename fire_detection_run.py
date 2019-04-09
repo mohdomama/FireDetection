@@ -14,10 +14,10 @@ import time
 
 model=load_model(r'TrainedModels/Fire-64x64-color.model')
 
-vc = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0)
 
-if vc.isOpened(): # try to get the first frame
-    rval, frame = vc.read()
+if cap.isOpened(): # try to get the first frame
+    rval, frame = cap.read()
 else:
     rval = False
 
@@ -25,7 +25,7 @@ else:
 IMG_SIZE = 64
 while(1):
 
-    rval, image = vc.read()
+    rval, image = cap.read()
     if rval==True:
         orig = image.copy()
         
@@ -45,9 +45,7 @@ while(1):
         
         label = "Fire Probability: " + str(fire_prob)
         cv2.putText(orig, label, (10, 25),  cv2.FONT_HERSHEY_SIMPLEX,0.7, (0, 255, 0), 2)
-        #fps=vc.get(cv2.CAP_PROP_FPS)
-        #print(fps)
-        
+
         cv2.imshow("Output", orig)
         
         key = cv2.waitKey(10)
@@ -58,5 +56,5 @@ while(1):
 end = time.time()
 
 
-vc.release()
-cv2.destroyWindow("preview")
+cap.release()
+cv2.destroyAllWindows()
